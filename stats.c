@@ -1,4 +1,4 @@
-/**********
+/******************************************************************************
  * Copyright (C) 2017 by Alex Fosdick - University of Colorado
  *
  * Redistribution, modification or use of this software in source or binary
@@ -7,132 +7,131 @@
  * software. Alex Fosdick and the University of Colorado are not liable for any
  * misuse of this material. 
  *
- *********/
+ *****************************************************************************/
 /**
- * @file <stats.c> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief Anaylzes a hard coded array
  *
- * <Add Extended Description Here>
+ * Analyze unsigned char data items and report analytics on the maximum, 
+ * minimum, mean, and median of the data set. Sorting is also performed.
  *
- * @author <Girish Vadlamudi>
- * @date <06-January-2021>
+ * @author Girish Vadlamudi
+ * @date 10-Jan-2021
  *
  */
 
 
 
+
 #include <stdio.h>
 #include "stats.h"
+
+/* Size of the Data Set */
 #define SIZE (40)
+
 void main() {
-int i,j,a,n, position, median, minimum, maximum;
-float mean;
-static int array;
-int size;
-int test[] = { 34, 201, 190, 154,   8, 194,   2,   6,
+
+  unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
-void print_array(int test[],int size){	
-printf("Given array:\n");
-for(i=0;i<size;i++)
+
+  /* Other Variable Declarations Go Here */
+  /* Statistics and Printing Functions Go Here */
+  //Note: Calculating statistics involves sorting the array, so the 
+  //2nd print array prints a sorted array.
+  print_array(&test[0], SIZE);
+  print_statistics(&test[0], SIZE);
+  printf("\n");
+  print_array(&test[0], SIZE);
+}
+
+/* Add other Implementation File Code Here */
+
+void print_statistics(unsigned char *arr, unsigned int len)
 {
-printf("%d\t", test[i]);
+	printf("Calculating Statistics!\n");
+	printf("Median: %d\n", find_median(arr, len));
+	printf("Mean  : %d\n", find_mean(arr, len));
+	printf("Max   : %d\n", find_max(arr, len));
+	printf("Min   : %d\n", find_min(arr, len));
 }
-printf("\n");
-}
-int sort_array(int array[], int size){
-for(i=0;i<size;++i)
+
+
+void print_array(unsigned char *arr, unsigned int len)
 {
-for(j=i+1;j<size;++j)
+	int i;
+	printf("\nPrinting the Array!\n");
+	printf("\n");
+	for (i = 0; i < len; ++i)
+	{
+		printf("%3d ", arr[i]);
+		if (i>0 && (i+1)%8 == 0)
+		{
+			printf("\n");
+		}
+
+	}
+	printf("\n");
+}
+
+unsigned char find_median(unsigned char *arr, unsigned int len)
 {
-if(array[i]<array[j])
+	sort_array(arr, SIZE);
+	return arr[len/2];
+}
+
+unsigned char find_mean(unsigned char *arr, unsigned int len)
 {
-a = array[i];
-array[i] = array[j];
-array[j] = a;
+	int sum,i;
+	sum = 0;
+	for (i = 0; i < len; ++i)
+	{
+		sum += arr[i];
+	}
+	return sum/len;
 }
-}
-}
-printf("Sorted Array:\n");
-for (i=0;i<size;i++){
-printf("%d\t",array[i]);
-}
-printf("\n");
-}
-int find_median(int array[], int size){
-for(i=0;i<size;++i)
+
+unsigned char find_max(unsigned char *arr, unsigned int len)
 {
-for(j=i+1;j<size;++j)
+	sort_array(arr, SIZE);
+	return arr[len-1];
+}
+
+unsigned char find_min(unsigned char *arr, unsigned int len)
 {
-if(array[i]<array[j])
+	sort_array(arr, SIZE);
+	return arr[0];
+}
+
+void sort_array(unsigned char *arr, unsigned int len)
 {
-a = array[i];
-array[i] = array[j];
-array[j] = a;
+	int i,c;
+	if (is_sorted(arr,len))
+		return;
+	printf("Sorting the Array!\n");
+	for (i = 0; i < len; ++i)
+	{
+		int min_loc = i;
+		for(c = i; c < len; c++)
+		{
+			if(arr[c] < arr[min_loc]) 
+				min_loc = c;
+		}
+		int temp = arr[i];
+		arr[i] = arr[min_loc];
+		arr[min_loc] = temp;
+	}
+	printf("Sorted!\n");
 }
-}
-}
-position = (size/2);
-median = (array[position]);
-printf("\n");
-printf("Median:%d", median);
-printf("\n");
-}
-int find_mean( int array[], int size){
-for(i=0;i<size;i++)
+unsigned char is_sorted(unsigned char *arr, unsigned int len)
 {
-mean = mean + array[i]; 
+	int c;
+	for(c = 0; c < len-1; c++)
+	{
+		if(arr[c] > arr[c+1]) 
+			return 0;
+	}
+	return 1;
 }
-mean = (mean/size);
-printf("\n");
-printf("Mean:%f", mean);
-printf("\n");
-}
-int find_minimum(int array[], int size){
-for(i=0;i<size;++i)
-{
-for(j=i+1;j<size;++j)
-{
-if(array[i]<array[j])
-{
-a = array[i];
-array[i] = array[j];
-array[j] = a;
-}
-}
-}
-minimum = array[size-1];
-printf("\n");
-printf("Minimum:%d", minimum);
-printf("\n");
-}
-int find_maximum(int array[], int size){
-for(i=0;i<size;++i)
-{
-for(j=i+1;j<size;++j)
-{
-if(array[i]<array[j])
-{
-a = array[i];
-array[i] = array[j];
-array[j] = a;
-}
-}
-}
-maximum = array[0];
-printf("\n");
-printf("Maximum:%d", maximum);
-printf("\n");
-}
-int print_statistics(int array[], int size){
-find_median(array, size);
-find_mean(array, size);
-find_minimum(array, size);
-find_maximum(array, size);
-}
-print_array(test, SIZE);
-sort_array(test, SIZE);
-print_statistics(test, SIZE);
-} 
