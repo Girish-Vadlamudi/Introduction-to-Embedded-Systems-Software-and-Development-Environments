@@ -9,31 +9,35 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file <stats.c> 
+ * @brief <code to print the stats from the given array>
  *
- * <Add Extended Description Here>
+ * <A C programming code to print the give array, sorted array, Mean, Mediann, Minimum and Maximum of array.>
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author <Girish Vadlamudi>
+ * @date <09-Jan-2021>
  *
  */
 #ifndef __STATS_H__
 #define __STATS_H__
 
-/* Add Your Declarations and Function Comments here */ 
+/*     main() - The main entry point for your program
+    print_statistics() - A function that prints the statistics of an array including minimum, maximum, mean, and median.
+    print_array() -  Given an array of data and a length, prints the array to the screen
+    find_median() - Given an array of data and a length, returns the median value
+    find_mean() -  Given an array of data and a length, returns the mean
+    find_maximum() -  Given an array of data and a length, returns the maximum
+    find_minimum() -  Given an array of data and a length, returns the minimum
+    sort_array() - Given an array of data and a length, sorts the array from largest to smallest.  (The zeroth Element should be the largest value, and the last element (n-1) should be the smallest value. ) */ 
 
 /**
- * @brief <Add Brief Description of Function Here>
  *
- * <Add Extended Description Here>
+ * @param <main()> <The main entry point for your program>
+ * @param <print_statistics()> <A function that prints the statistics of an array including minimum, maximum, mean, and median.>
+ * @param <print_array()> <Given an array of data and a length, prints the array to the screen>
+ * @param <find_median()> <iven an array of data and a length, returns the median value>
  *
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- *
- * @return <Add Return Informaiton here>
+ * @return <In tese functions I can return the unsigned char poiner or unsigned int>
  */
 
 
