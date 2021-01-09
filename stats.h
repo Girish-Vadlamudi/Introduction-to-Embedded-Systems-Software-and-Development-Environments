@@ -37,7 +37,7 @@
  * @param <print_array()> <Given an array of data and a length, prints the array to the screen>
  * @param <find_median()> <iven an array of data and a length, returns the median value>
  *
- * @return <In tese functions I can return the unsigned char poiner or unsigned int>
+ * @return <In tese functions I can return the unsigned char poiner or unsigned int>     
  */
 
 

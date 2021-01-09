@@ -10,9 +10,9 @@
  *********/
 /**
  * @file <stats.c> 
- * @brief <code to print the stats from the given array>
+ * @brief <Add Brief Description Here >
  *
- * <A C programming code to print the give array, sorted array, Mean, Mediann, Minimum and Maximum of array. I was not having the idea to use and convert the unsigned char array type, so I used the int version of it. Looking forward to learn it.>
+ * <Add Extended Description Here>
  *
  * @author <Girish Vadlamudi>
  * @date <06-January-2021>
@@ -34,20 +34,105 @@ int test[] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
-void print_statistics(int array[], int size){
-}
 void print_array(int test[],int size){	
+printf("Given array:\n");
+for(i=0;i<size;i++)
+{
+printf("%d\t", test[i]);
 }
-void sort_array(int array[], int size){
+printf("\n");
 }
-void find_median(int array[], int size){
+int sort_array(int array[], int size){
+for(i=0;i<size;++i)
+{
+for(j=i+1;j<size;++j)
+{
+if(array[i]<array[j])
+{
+a = array[i];
+array[i] = array[j];
+array[j] = a;
 }
-void find_mean( int array[], int size){
 }
-void find_minimum(int array[], int size){
 }
-void find_maximum(int array[], int size){
+printf("Sorted Array:\n");
+for (i=0;i<size;i++){
+printf("%d\t",array[i]);
 }
+printf("\n");
+}
+int find_median(int array[], int size){
+for(i=0;i<size;++i)
+{
+for(j=i+1;j<size;++j)
+{
+if(array[i]<array[j])
+{
+a = array[i];
+array[i] = array[j];
+array[j] = a;
+}
+}
+}
+position = (size/2);
+median = (array[position]);
+printf("\n");
+printf("Median:%d", median);
+printf("\n");
+}
+int find_mean( int array[], int size){
+for(i=0;i<size;i++)
+{
+mean = mean + array[i]; 
+}
+mean = (mean/size);
+printf("\n");
+printf("Mean:%f", mean);
+printf("\n");
+}
+int find_minimum(int array[], int size){
+for(i=0;i<size;++i)
+{
+for(j=i+1;j<size;++j)
+{
+if(array[i]<array[j])
+{
+a = array[i];
+array[i] = array[j];
+array[j] = a;
+}
+}
+}
+minimum = array[size-1];
+printf("\n");
+printf("Minimum:%d", minimum);
+printf("\n");
+}
+int find_maximum(int array[], int size){
+for(i=0;i<size;++i)
+{
+for(j=i+1;j<size;++j)
+{
+if(array[i]<array[j])
+{
+a = array[i];
+array[i] = array[j];
+array[j] = a;
+}
+}
+}
+maximum = array[0];
+printf("\n");
+printf("Maximum:%d", maximum);
+printf("\n");
+}
+int print_statistics(int array[], int size){
+find_median(array, size);
+find_mean(array, size);
+find_minimum(array, size);
+find_maximum(array, size);
+}
+print_array(test, SIZE);
+sort_array(test, SIZE);
+print_statistics(test, SIZE);
 } 
-
-
